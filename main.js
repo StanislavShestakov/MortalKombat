@@ -16,8 +16,7 @@ const player2 = {
         console.log(this.name + ' Fight.... ');
     }
 };
-console.log(player1);
-player1.attack();
+
 function createPlayer(id,name,hp,img){
     const $player1 = document.createElement('div');
     $player1.classList.add(id);
