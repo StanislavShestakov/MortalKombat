@@ -16,33 +16,7 @@ const player2 = {
         console.log(this.name + ' Fight.... ');
     }
 };
-const player3 = {
-    name:'SubZero',
-    hp: 100,
-    img: 'http://reactmarathon-api.herokuapp.com/assets/sonya.gif',
-    weapon:['cold','water'],
-    attack: function(){
-        console.log(this.name + ' Fight.... ');
-    }
-};
-const player4 = {
-    name:'SubZero',
-    hp: 100,
-    img: 'http://reactmarathon-api.herokuapp.com/assets/liukang.gif',
-    weapon:['cold','water'],
-    attack: function(){
-        console.log(this.name + ' Fight.... ');
-    }
-};
-const player5 = {
-    name:'SubZero',
-    hp: 100,
-    img: 'http://reactmarathon-api.herokuapp.com/assets/kitana.gif',
-    weapon:['cold','water'],
-    attack: function(){
-        console.log(this.name + ' Fight.... ');
-    }
-};
+
 function createPlayer(str,player){
     const $player1 = document.createElement('div');
     $player1.classList.add(str);
@@ -72,6 +46,3 @@ function createPlayer(str,player){
 }
 createPlayer('player1',player1);
 createPlayer('player2',player2);
-createPlayer('player3',player3);
-createPlayer('player4',player4);
-createPlayer('player5',player5);
