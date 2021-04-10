@@ -1,16 +1,10 @@
-const a = 10;
-const b = 5;
+const walkDirection = prompt('Where are we going?');
 
-console.log(a > b);
-console.log(a > b);
-console.log(a != b);
-console.log(a == b);
-console.log(false == 0);
-console.log(false === 0);
-console.log('F' == 0);
-console.log(null > 0);
-console.log(null == 0);
-console.log(null >= 0);
-console.log(undefined == null);
-console.log(undefined === null);
-
+if(walkDirection === 'left'){
+    console.log('We shoud go on the ' + walkDirection);
+}else if(walkDirection === 'right'){
+    console.log('We shoud go on the ' + walkDirection);
+}
+else {
+    console.log('We shold stay!');
+}
