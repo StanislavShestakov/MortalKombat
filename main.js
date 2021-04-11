@@ -4,7 +4,7 @@ const $randomButton = document.querySelector('.button');
 const player1 = {
     player: 1,
     name: 'Scorpion',
-    hp: 100,
+    hp: 90,
     img: 'http://reactmarathon-api.herokuapp.com/assets/scorpion.gif',
     weapon: ['chain', 'thorn'],
     attack: function () {
@@ -14,7 +14,7 @@ const player1 = {
 const player2 = {
     player: 2,
     name: 'SubZero',
-    hp: 50,
+    hp: 100,
     img: 'http://reactmarathon-api.herokuapp.com/assets/subzero.gif',
     weapon: ['cold', 'water'],
     attack: function () {
@@ -71,9 +71,9 @@ function changeHP(player) {
 }
 function playerWin(name){
     const $winTitle = createElement('div','loseTitle');
-    $winTitle.innerText = 'Scorpion win';
-    if(name === 'Scorpion'){
-    $winTitle.innerText = 'SubZero win';}
+    $winTitle.innerText = player1.name + ' win';
+    if(name === player1.name){
+    $winTitle.innerText = player2.name + ' win';}
 
     return $winTitle;
 }
