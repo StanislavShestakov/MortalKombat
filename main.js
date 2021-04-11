@@ -1,27 +1,55 @@
-console.log(true && false);
-console.log(true && true);
+const $arenas = document.querySelector('.root .arenas');
 
-console.log(true && 'This string');
-console.log(true && 'This string' && true);
+const player1 = {
+    player:1,
+    name:'Scorpion',
+    hp: 100,
+    img: 'http://reactmarathon-api.herokuapp.com/assets/scorpion.gif',
+    weapon:['chain','thorn'],
+    attack: function(){
+        console.log(this.name + ' Fight.... ');
+    }
+};
+const player2 = {
+    player:2,
+    name:'SubZero',
+    hp: 100,
+    img: 'http://reactmarathon-api.herokuapp.com/assets/subzero.gif',
+    weapon:['cold','water'],
+    attack: function(){
+        console.log(this.name + ' Fight.... ');
+    }
+};
 
-console.log(false || true);
-console.log(false || false);
+function createElement(tag,className){
+    const $tag = document.createElement(tag);
+    if(className) {
+        $tag.classList.add(className);
+    }
+    return $tag;
+}
+function createPlayer(playerObj){
+    const $player = createElement('div', 'player' + playerObj.player);
 
-console.log(!false);
-console.log(!true);
+    const $progressbar = createElement('div','progressbar');
+    const $life = createElement('div','life');
+    $life.style.width = playerObj.hp + '%';
+    const $name = createElement('div','name');
+    $name.innerText = playerObj.name;
+    $progressbar.appendChild($life);
+    $progressbar.appendChild($name);
 
-console.log(!'string');
-console.log(!1);
-console.log(!'');
+    const $character = createElement('div','character');
+    const $img = createElement('img');
+    $img.src = playerObj.img;
+    $character.appendChild($img);
 
-console.log(true?1:2);
-console.log(false?1:2);
-
-const isTrue = true? 'yes':'no';
-console.log(isTrue);
+    $player.appendChild($progressbar);
+    $player.appendChild($character);
 
 
-
-
-
+    return $player;
+}
+$arenas.appendChild(createPlayer(player1));
+$arenas.appendChild(createPlayer(player2));
 
