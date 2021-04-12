@@ -18,7 +18,7 @@ const player2 = {
     img: 'http://reactmarathon-api.herokuapp.com/assets/subzero.gif',
     weapon: ['cold', 'water'],
     attack: function () {
-        console.log(this.name + ' Fight.... ');
+        console.log(this.name + ' Fight.... ' );
     }
 };
 
