@@ -103,7 +103,8 @@ $randomButton.addEventListener('click', function () {
     player2.renderHP();
 
     if(player1.hp === 0 || player2.hp === 0){
-        $randomButton.disabled  = true;
+        //$randomButton.disabled  = true;
+        $randomButton.remove();
     }
     let isWin = false;
     if(player1.hp === 0 && player1.hp < player2.hp){
@@ -117,6 +118,7 @@ $randomButton.addEventListener('click', function () {
         isWin = true;
     }
     if(isWin){
+
         $arenas.appendChild(createReloadButton());
     }
 })
