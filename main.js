@@ -74,7 +74,6 @@ function playerWin(name) {
 }
 
 function changeHP(amount){
-
     this.hp -= amount;
 
     if (this.hp <= 0) {
@@ -89,27 +88,36 @@ function renderHP(){
 }
 
 function createReloadButton(){
-
+    const $restart = createElement('div', 'reloadWrap');
+    const $restartButton = createElement('button', 'button');
+    $restartButton.innerText = "Restart";
+    $restart.appendChild($restartButton);
+    $restart.addEventListener('click', function () {window.location.reload()})
+    return $restart;
 }
 
 $randomButton.addEventListener('click', function () {
     player1.changeHP(Math.ceil(Math.random()*20));
     player2.changeHP(Math.ceil(Math.random()*20));
-    player1.elHP();
-    player2.elHP();
     player1.renderHP();
     player2.renderHP();
 
     if(player1.hp === 0 || player2.hp === 0){
         $randomButton.disabled  = true;
     }
-
+    let isWin = false;
     if(player1.hp === 0 && player1.hp < player2.hp){
         $arenas.appendChild(playerWin(player2.name));
+        isWin = true;
     }else if (player2.hp === 0 && player2.hp < player1.hp){
         $arenas.appendChild(playerWin(player1.name));
+        isWin = true;
     }else if(player1.hp === 0 && player2.hp === 0){
         $arenas.appendChild(playerWin());
+        isWin = true;
+    }
+    if(isWin){
+        $arenas.appendChild(createReloadButton());
     }
 })
 
