@@ -115,7 +115,7 @@ $arenas.appendChild(createPlayer(player1));
 $arenas.appendChild(createPlayer(player2));
 
 
-function Attack(targetAttack, targetDefence){
+function attack(targetAttack, targetDefence){
     let hit = ATTACK[getRandom(3)-1];
     let defence = ATTACK[getRandom(3)-1];
     let value = getRandom(HIT[hit]);
@@ -133,33 +133,7 @@ function Attack(targetAttack, targetDefence){
     }
 }
 
-$formFight.addEventListener('submit', function (e){
-    e.preventDefault();
-    let at;
-    let def;
-    for(let item of $formFight){
-       if(item.checked && item.name === 'hit'){
-           at = item.value;
-       }
-        if(item.checked && item.name === 'defence'){
-           def = item.value;
-        }
-        item.checked = false;
-    }
-    const enemy = Attack();
-    const attak = Attack(at,def);
-
-    console.log('####: attak', attak);
-    console.log('####: attak', enemy);
-    if(attak.hit != enemy.defence){
-        player2.changeHP(attak.value);
-    }
-    if(enemy.hit != attak.defence){
-        player1.changeHP(enemy.value);
-    }
-    player1.renderHP();
-    player2.renderHP();
-
+function isWin(){
     if(player1.hp === 0 || player2.hp === 0){
         $fightButton.remove();
     }
@@ -175,8 +149,51 @@ $formFight.addEventListener('submit', function (e){
         isWin = true;
     }
     if(isWin){
-
         $arenas.appendChild(createReloadButton());
     }
+}
+function getChecked(){
+    let at;
+    let def;
+    for(let item of $formFight){
+        if(item.checked && item.name === 'hit'){
+            at = item.value;
+        }
+        if(item.checked && item.name === 'defence'){
+            def = item.value;
+        }
+        item.checked = false;
+    }
+    return{
+        at,
+        def
+    }
+}
+
+function fight(playerArr, enemyArr){
+    if(playerArr.hit !== enemyArr.defence){
+        player2.changeHP(playerArr.value);
+    }
+    if(enemyArr.hit !== playerArr.defence){
+        player1.changeHP(enemyArr.value);
+    }
+}
+
+$formFight.addEventListener('submit', function (e){
+    e.preventDefault();
+
+    const enemy = attack();
+    const atDefArr = getChecked();
+    const attackC = attack(atDefArr.at,atDefArr.def);
+
+    console.log('####: attack', attackC);
+    console.log('####: attack', enemy);
+
+    fight(attackC,enemy);
+
+    player1.renderHP();
+    player2.renderHP();
+
+   isWin();
 
 })
