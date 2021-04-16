@@ -114,12 +114,20 @@ function  getRandom(num){
 $arenas.appendChild(createPlayer(player1));
 $arenas.appendChild(createPlayer(player2));
 
-function  enemyAttack(){
-    const hit = ATTACK[getRandom(3)-1];
-    const defence = ATTACK[getRandom(3)-1];
 
+function Attack(targetAttack, targetDefence){
+    let hit = ATTACK[getRandom(3)-1];
+    let defence = ATTACK[getRandom(3)-1];
+    let value = getRandom(HIT[hit]);
+    if(targetAttack){
+        value = getRandom(HIT[targetAttack]);
+        hit = targetAttack;
+    }
+    if(targetDefence){
+        defence = targetDefence;
+    }
     return{
-        value: getRandom(HIT[hit]),
+        value,
         hit,
         defence,
     }
@@ -127,21 +135,20 @@ function  enemyAttack(){
 
 $formFight.addEventListener('submit', function (e){
     e.preventDefault();
-
-    const enemy = enemyAttack();
-    const attak = {};
-
+    let at;
+    let def;
     for(let item of $formFight){
        if(item.checked && item.name === 'hit'){
-           attak.value = getRandom(HIT[item.value]);
-           attak.hit = item.value;
+           at = item.value;
        }
-
         if(item.checked && item.name === 'defence'){
-            attak.defence = item.value;
+           def = item.value;
         }
         item.checked = false;
     }
+    const enemy = Attack();
+    const attak = Attack(at,def);
+
     console.log('####: attak', attak);
     console.log('####: attak', enemy);
     if(attak.hit != enemy.defence){
