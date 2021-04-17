@@ -1,19 +1,10 @@
-const direction = 'top1';
+console.log(new Date());
+const date = new Date();
+console.dir(date);
 
-function wherelook(direction) {
+console.log(date.getDate());
+console.log(date.getMonth());
+console.log(date.getHours());
+console.log(date.getMinutes());
 
-    switch (direction) {
-        case 'top':
-            return 'look at the top';
-        case 'bottom':
-            return 'look at the bottom';
-        case 'left':
-            return 'look at the left';
-        case 'right':
-            return 'look at the right';
-        default:
-            return 'lool ahead';
-    }
-}
-
-console.log(wherelook('left'));
+console.log(new Date('1988-12-24'));
