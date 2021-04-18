@@ -256,7 +256,7 @@ function generateLogs(type, player1, player2, valueHP) {
             + ' -' + valueHP + '.'+player1.name + ' '+ player1.hp + '/100';
             break;
         case 'start':
-            text = logs[type].replace('[time]',time).replace('[player1]',player1).replace('[player2]',player2);
+            text = logs[type].replace('[time]',time).replace('[player1]',player1.name).replace('[player2]',player2.name);
             break;
         case 'end':
             text = logs[type][getRandom(logs.end.length)-1].replace('[playerWins]',player1.name).replace('[playerLose]',player2.name);
@@ -290,5 +290,5 @@ $formFight.addEventListener('submit', function (e) {
 
 })
 window.onload  = function (){
-    generateLogs('start');
+    generateLogs('start',player1,player2);
 }
