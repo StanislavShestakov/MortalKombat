@@ -248,18 +248,18 @@ function generateLogs(type, player1, player2, valueHP) {
     }
     switch (type) {
         case  'hit':
-            text = logs[type][getRandom(logs.hit.length)].replace('[playerKick]', player1.name).replace('[playerDefence]', player2.name)
+            text = logs[type][getRandom(logs.hit.length)-1].replace('[playerKick]', player1.name).replace('[playerDefence]', player2.name)
                 + ' -' + valueHP + '.'+player1.name + ' '+ player1.hp + '/100';
             break;
         case 'defence':
-            text = logs[type][getRandom(logs.defence.length)].replace('[playerKick]', player1.name).replace('[playerDefence]', player2.name)
+            text = logs[type][getRandom(logs.defence.length)-1].replace('[playerKick]', player1.name).replace('[playerDefence]', player2.name)
             + ' -' + valueHP + '.'+player2.name + ' '+ player2.hp + '/100';
             break;
         case 'start':
             text = logs[type].replace('[time]',time).replace('[player1]',player1).replace('[player2]',player2);
             break;
         case 'end':
-            text = logs[type][getRandom(logs.end.length)].replace('[playerWins]',player1.name).replace('[playerLose]',player2.name);
+            text = logs[type][getRandom(logs.end.length)-1].replace('[playerWins]',player1.name).replace('[playerLose]',player2.name);
             break;
         case 'draw':
             text = logs[type];
