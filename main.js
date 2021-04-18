@@ -252,7 +252,7 @@ function generateLogs(type, player1, player2, valueHP) {
                 + ' -' + valueHP + '.'+player1.name + ' '+ player1.hp + '/100';
             break;
         case 'defence':
-            text = logs[type][getRandom(logs.defence.length)-1].replace('[playerKick]', player2.name).replace('[playerDefence]', player1.name)
+            text = logs[type][getRandom(logs.defence.length)-1].replace('[playerKick]', player1.name).replace('[playerDefence]', player2.name)
             + ' -' + valueHP + '.'+player2.name + ' '+ player2.hp + '/100';
             break;
         case 'start':
