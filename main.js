@@ -238,14 +238,11 @@ function setDamage(playerArr, enemyArr, player) {
     }
 }
 
-function generateLogs(type, player1, player2, valueHP) {
+function generateLogs(type, player1, player2, valueHP = 0) {
     let text;
     let el;
     const date = new Date();
     const time = date.getHours() + ':' + date.getMinutes() +':'+ date.getSeconds();
-    if(valueHP === undefined){
-        valueHP = 0;
-    }
     switch (type) {
         case  'hit':
             text = logs[type][getRandom(logs.hit.length)-1].replace('[playerKick]', player2.name).replace('[playerDefence]', player1.name)
@@ -263,6 +260,9 @@ function generateLogs(type, player1, player2, valueHP) {
             break;
         case 'draw':
             text = logs[type];
+            break;
+        default:
+            text = 'ничего не произошло';
             break;
     }
     console.log(text);
@@ -289,6 +289,7 @@ $formFight.addEventListener('submit', function (e) {
     isWin();
 
 })
-window.onload  = function (){
-    generateLogs('start',player1,player2);
-}
+// window.onload  = function (){
+//     generateLogs('start',player1,player2);
+// }
+generateLogs('start',player1,player2);
