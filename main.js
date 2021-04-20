@@ -1,21 +1,22 @@
-const character = {
-    name: 'Scorpion',
-    hp: 100,
-    weapon: ['hands'],
-    type: 'fighters',
+// function  sum(a,b){
+//     return a+b;
+// }
 
-}
-
-character.whoop = function (){
-    console.log(`${this.name} let's fight!`);
-}
-//console.log(character.kick());
-Object.prototype.kick = function (){
-    console.log('Kick Again');
+const sum =function (a =0,b=0){
+    return a+b;
 }
 
-const kitana =Object.create(character);
-kitana.name = 'Kitana';
-Object.prototype.toString = function (){
-    return 'Это Объект!..';
-}
+console.log(sum(4,2));
+
+const calc =sum;
+
+console.log(calc(4,2));
+console.log(calc());
+
+const a = {
+    name: 'Zar',
+};
+
+(function (){
+    console.log(this)
+}).call(a);
