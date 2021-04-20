@@ -1,5 +1,6 @@
-import {player,playerNew} from './player.js';
+import {player, playerNew} from './player.js';
 import getRandom from './utils.js';
+import setDamage from "./set_damage.js";
 
 
 const $root = document.querySelector('.root');
@@ -185,11 +186,11 @@ function isWin() {
     let isWin = false;
     if (player1.hp === 0 && player1.hp < player2.hp) {
         $arenas.appendChild(playerWin(player2.name));
-        generateLogs('end',player2,player1);
+        generateLogs('end', player2, player1);
         isWin = true;
     } else if (player2.hp === 0 && player2.hp < player1.hp) {
         $arenas.appendChild(playerWin(player1.name))
-        generateLogs('end',player1,player2);
+        generateLogs('end', player1, player2);
         isWin = true;
     } else if (player1.hp === 0 && player2.hp === 0) {
         $arenas.appendChild(playerWin());
@@ -219,44 +220,26 @@ function getChecked() {
     }
 }
 
-function setDamage(playerArr, enemyArr, player) {
-    if (player === player1) {
-        if (playerArr.hit !== enemyArr.defence) {
-            player2.changeHP(playerArr.value);
-            generateLogs('hit', player2, player1, playerArr.value);
-        } else {
-            generateLogs('defence', player1, player2);
-        }
-    }
-    if (player === player2) {
-        if (enemyArr.hit !== playerArr.defence) {
-            player1.changeHP(enemyArr.value);
-            generateLogs('hit', player1, player2, enemyArr.value);
-        } else {
-            generateLogs('defence', player2, player1);
-        }
-    }
-}
 
 function generateLogs(type, player1, player2, valueHP = 0) {
     let text;
     let el;
     const date = new Date();
-    const time = date.getHours() + ':' + date.getMinutes() +':'+ date.getSeconds();
+    const time = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
     switch (type) {
         case  'hit':
-            text = logs[type][getRandom(logs.hit.length)-1].replace('[playerKick]', player2.name).replace('[playerDefence]', player1.name)
-                + ' -' + valueHP + '.'+player1.name + ' '+ player1.hp + '/100';
+            text = logs[type][getRandom(logs.hit.length) - 1].replace('[playerKick]', player2.name).replace('[playerDefence]', player1.name)
+                + ' -' + valueHP + '.' + player1.name + ' ' + player1.hp + '/100';
             break;
         case 'defence':
-            text = logs[type][getRandom(logs.defence.length)-1].replace('[playerKick]', player1.name).replace('[playerDefence]', player2.name)
-                + ' -' + valueHP + '.'+player2.name + ' '+ player2.hp + '/100';
+            text = logs[type][getRandom(logs.defence.length) - 1].replace('[playerKick]', player1.name).replace('[playerDefence]', player2.name)
+                + ' -' + valueHP + '.' + player2.name + ' ' + player2.hp + '/100';
             break;
         case 'start':
-            text = logs[type].replace('[time]',time).replace('[player1]',player1.name).replace('[player2]',player2.name);
+            text = logs[type].replace('[time]', time).replace('[player1]', player1.name).replace('[player2]', player2.name);
             break;
         case 'end':
-            text = logs[type][getRandom(logs.end.length)-1].replace('[playerWins]',player1.name).replace('[playerLose]',player2.name);
+            text = logs[type][getRandom(logs.end.length) - 1].replace('[playerWins]', player1.name).replace('[playerLose]', player2.name);
             break;
         case 'draw':
             text = logs[type];
@@ -280,8 +263,8 @@ $formFight.addEventListener('submit', function (e) {
     console.log('####: attack', attackC);
     console.log('####: attack', enemy);
 
-    setDamage(attackC, enemy, player1);
-    setDamage(attackC, enemy, player2);
+    setDamage(attackC, enemy, player1, player1, player2);
+    setDamage(attackC, enemy, player2, player1, player2);
 
     player1.renderHP();
     player2.renderHP();
@@ -289,7 +272,5 @@ $formFight.addEventListener('submit', function (e) {
     isWin();
 
 })
-// window.onload  = function (){
-//     generateLogs('start',player1,player2);
-// }
-generateLogs('start',player1,player2);
+
+generateLogs('start', player1, player2);
