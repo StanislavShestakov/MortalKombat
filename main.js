@@ -1,26 +1,21 @@
-const player = {
-    name: 'Stas',
-    type: 'padavan',
-    weapon: ['JS','Layout HTML'],
-    hp:{
-        current: 1000,
-        total: 880,
-    }
-}
-const player2 = {
-    name: 'Stas',
-    type: 'padavan',
-    weapon: ['JS','Layout HTML'],
-    hp:{
-        current: 1000,
-        total: 880,
-    }
+const character = {
+    name: 'Scorpion',
+    hp: 100,
+    weapon: ['hands'],
+    type: 'fighters',
+
 }
 
-//const{name,type,weapon:[one,two,tree], hp:{current,total},type1=333} =  player;
-//console.log(name,type, weapon, current,type1);
+character.whoop = function (){
+    console.log(`${this.name} let's fight!`);
+}
+//console.log(character.kick());
+Object.prototype.kick = function (){
+    console.log('Kick Again');
+}
 
-const{name, ...rest} =  player;
-const{name:namePlayer2, ...restPlayer2} =  player2;
-console.log(name,rest);
-console.log(namePlayer2,restPlayer2);
+const kitana =Object.create(character);
+kitana.name = 'Kitana';
+Object.prototype.toString = function (){
+    return 'Это Объект!..';
+}
