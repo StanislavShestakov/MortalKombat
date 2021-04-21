@@ -1,8 +1,10 @@
 import {player, playerNew} from './player.js';
-import getRandom from './utils.js';
+import getRandom from './get_random.js';
 import setDamage from "./set_damage.js";
 import generateLogs from "./generate_logs.js";
 import changeHP from "./change_hp.js";
+import createElement from "./create_element.js";
+
 
 
 
@@ -91,17 +93,11 @@ const player2 = {
     elHP
 };
 
-function createElement(tag, className) {
-    const $tag = document.createElement(tag);
-    if (className) {
-        $tag.classList.add(className);
-    }
-    return $tag;
-}
+
 
 function createPlayer(playerObj) {
     const $player = createElement('div', 'player' + playerObj.player);
-
+ 
     const $progressbar = createElement('div', 'progressbar');
     const $life = createElement('div', 'life');
     $life.style.width = playerObj.hp + '%';
