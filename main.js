@@ -119,7 +119,7 @@ function createPlayer(playerObj) {
     $player.appendChild($character);
 
 
-    return $player;
+    return  $player;
 
 }
 
