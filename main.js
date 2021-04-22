@@ -3,6 +3,7 @@ import setDamage from "./set_damage.js";
 import generateLogs from "./generate_logs.js";
 import changeHP from "./change_hp.js";
 import createElement from "./create_element.js";
+import Player from "./player.js";
 
 
 
@@ -64,20 +65,20 @@ const logs = {
 
 export default logs;
 
-const player1 = {
-    player: 1,
-    name: 'Scorpion',
-    hp: 100,
-    img: 'http://reactmarathon-api.herokuapp.com/assets/scorpion.gif',
-    weapon: ['chain', 'thorn'],
-    attack: function () {
-        console.log(this.name + ' Fight.... ');
-    },
-    changeHP,
-    renderHP,
-    elHP
-
-};
+// const player1 = {
+//     player: 1,
+//     name: 'Scorpion',
+//     hp: 100,
+//     img: 'http://reactmarathon-api.herokuapp.com/assets/scorpion.gif',
+//     weapon: ['chain', 'thorn'],
+//     attack: function () {
+//         console.log(this.name + ' Fight.... ');
+//     },
+//     changeHP,
+//     renderHP,
+//     elHP
+//
+// };
 const player2 = {
     player: 2,
     name: 'SubZero',
@@ -91,7 +92,17 @@ const player2 = {
     renderHP,
     elHP
 };
-
+class Player1 extends Player {
+    constructor(props) {
+        super(props);
+    }
+}
+const player1 = new Player1({
+    player: 1,
+    name: 'Scorpion',
+    hp: 100,
+    img: 'http://reactmarathon-api.herokuapp.com/assets/scorpion.gif',
+});
 
 
 function createPlayer({player,hp,name,img}) {
