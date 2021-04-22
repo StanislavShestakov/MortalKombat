@@ -1,4 +1,3 @@
-import changeHP from "./change_hp.js";
 import generateLogs from "./generate_logs.js";
 function setDamage(playerArr, enemyArr, player,player1,player2) {
     if (player === player1) {
