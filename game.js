@@ -30,12 +30,10 @@ const player2 = new Player({
 });
 
 
-
 class Game {
 
 
-
-    createPlayer = ({player,hp,name,img}) => {
+    createPlayer = ({player, hp, name, img}) => {
         const $player = createElement('div', `player${player}`);
 
         const $progressbar = createElement('div', 'progressbar');
@@ -55,11 +53,11 @@ class Game {
         $player.appendChild($character);
 
 
-        return  $player;
+        return $player;
     }
 
 
-    getChecked(){
+    getChecked = () => {
         let at;
         let def;
         for (let item of $formFight) {
@@ -76,30 +74,30 @@ class Game {
             def
         }
     }
-    isWin() {
+    isWin = () => {
         if (player1.hp === 0 || player2.hp === 0) {
             $fightButton.remove();
         }
         let isWin = false;
         if (player1.hp === 0 && player1.hp < player2.hp) {
-            $arenas.appendChild(playerWin(player2.name));
+            $arenas.appendChild(this.playerWin(player2.name));
             generateLogs('end', player2, player1);
             isWin = true;
         } else if (player2.hp === 0 && player2.hp < player1.hp) {
-            $arenas.appendChild(playerWin(player1.name))
+            $arenas.appendChild(this.playerWin(player1.name))
             generateLogs('end', player1, player2);
             isWin = true;
         } else if (player1.hp === 0 && player2.hp === 0) {
-            $arenas.appendChild(playerWin());
+            $arenas.appendChild(this.playerWin());
             generateLogs('draw');
             isWin = true;
         }
         if (isWin) {
-            $arenas.appendChild(createReloadButton());
+            $arenas.appendChild(this.createReloadButton());
         }
     }
 
-    playerWin(name){
+    playerWin = (name) => {
         const $loseTitle = createElement('div', 'loseTitle');
         if (name) {
             $loseTitle.innerText = name + ' win';
@@ -110,7 +108,7 @@ class Game {
         return $loseTitle;
     }
 
-    createReloadButton(){
+    createReloadButton = () => {
         const $restart = createElement('div', 'reloadWrap');
         const $restartButton = createElement('button', 'button');
         $restartButton.innerText = "Restart";
@@ -121,7 +119,7 @@ class Game {
         return $restart;
     }
 
-    attack = (targetAttack, targetDefence) =>{
+    attack = (targetAttack, targetDefence) => {
         let hit = ATTACK[getRandom(3) - 1];
         let defence = ATTACK[getRandom(3) - 1];
         let value = getRandom(HIT[hit]);
@@ -138,39 +136,34 @@ class Game {
             defence,
         }
     }
-    showTest = () =>{
-       return 54;
+    action = () => {
+        const enemy = this.attack();
+        const atDefArr = this.getChecked();
+        const attackC = this.attack(atDefArr.at, atDefArr.def);
+
+        console.log('####: attack', attackC);
+        console.log('####: attack', enemy);
+
+        setDamage(attackC, enemy, player1, player1, player2);
+        setDamage(attackC, enemy, player2, player1, player2);
+
+        player1.renderHP();
+        player2.renderHP();
+
+        this.isWin();
     }
     start = () => {
-        const b = this.showTest();
+        const g = new Game();
         generateLogs('start', player1, player2);
         $formFight.addEventListener('submit', function (e) {
             e.preventDefault();
-            console.log(this);
-            const enemy = attack();
-            const atDefArr = this.getChecked();
-            const attackC = this.attack(atDefArr.at, atDefArr.def);
-
-            console.log('####: attack', attackC);
-            console.log('####: attack', enemy);
-
-            this.setDamage(attackC, enemy, player1, player1, player2);
-            this.setDamage(attackC, enemy, player2, player1, player2);
-
-            this.player1.renderHP();
-            this.player2.renderHP();
-
-            this.isWin();
-
+            g.action();
         });
         $arenas.appendChild(this.createPlayer(player1));
         $arenas.appendChild(this.createPlayer(player2));
     }
 
 
-
 }
-
-
 
 export default Game;
