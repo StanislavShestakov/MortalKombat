@@ -5,6 +5,7 @@ class Player {
         this.hp = props.hp;
         this.img = props.img;
     }
+
     changeHP = (amount) =>{
         this.hp -= amount;
 
@@ -12,9 +13,11 @@ class Player {
             this.hp = 0;
         }
     }
+
     elHP = () => {
     return document.querySelector(`.player${this.player} .life`);
     }
+
     renderHP = () => {
     this.elHP().style.width = `${this.hp}%`;
     }
