@@ -153,7 +153,7 @@ class Game {
         this.isWin();
     }
     start = () => {
-        const g = new Game();
+        const g = this;
         generateLogs('start', player1, player2);
         $formFight.addEventListener('submit', function (e) {
             e.preventDefault();
