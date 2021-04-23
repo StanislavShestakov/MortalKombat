@@ -1,7 +1,6 @@
 import getRandom from './get_random.js';
 import setDamage from "./set_damage.js";
 import generateLogs from "./generate_logs.js";
-import changeHP from "./change_hp.js";
 import createElement from "./create_element.js";
 import Player from "./player.js";
 
@@ -65,44 +64,19 @@ const logs = {
 
 export default logs;
 
-// const player1 = {
-//     player: 1,
-//     name: 'Scorpion',
-//     hp: 100,
-//     img: 'http://reactmarathon-api.herokuapp.com/assets/scorpion.gif',
-//     weapon: ['chain', 'thorn'],
-//     attack: function () {
-//         console.log(this.name + ' Fight.... ');
-//     },
-//     changeHP,
-//     renderHP,
-//     elHP
-//
-// };
-const player2 = {
-    player: 2,
-    name: 'SubZero',
-    hp: 100,
-    img: 'http://reactmarathon-api.herokuapp.com/assets/subzero.gif',
-    weapon: ['cold', 'water'],
-    attack: function () {
-        console.log(this.name + ' Fight.... ');
-    },
-    changeHP,
-    renderHP,
-    elHP
-};
-class Player1 extends Player {
-    constructor(props) {
-        super(props);
-    }
-}
-const player1 = new Player1({
+const player1 = new Player({
     player: 1,
     name: 'Scorpion',
     hp: 100,
     img: 'http://reactmarathon-api.herokuapp.com/assets/scorpion.gif',
 });
+const player2 = new Player({
+    player: 2,
+    name: 'SubZero',
+    hp: 100,
+    img: 'http://reactmarathon-api.herokuapp.com/assets/subzero.gif',
+});
+
 
 
 function createPlayer({player,hp,name,img}) {
@@ -143,14 +117,6 @@ function playerWin(name) {
     return $loseTitle;
 }
 
-
-function elHP() {
-    return document.querySelector(`.player${this.player} .life`);
-}
-
-function renderHP() {
-    this.elHP().style.width = `${this.hp}%`;
-}
 
 function createReloadButton() {
     const $restart = createElement('div', 'reloadWrap');
