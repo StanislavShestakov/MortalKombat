@@ -1,62 +1,32 @@
-import Player from "./player.js";
+import { getRandom,createElement } from "./utils";
+import {LOGS,ATTACK,HIT} from "./constants";
+
+import Player from "./Player";
 import generateLogs from "./generate_logs.js";
-import createElement from "./create_element.js";
-import getRandom from "./get_random.js";
 import setDamage from "./set_damage.js";
 
-const $arenas = document.querySelector('.arenas');
+const $arenas = document.querySelector(`.arenas`);
 const $fightButton = document.querySelector('.buttonWrap .button');
 const $formFight = document.querySelector('.control');
 
-const HIT = {
-    head: 30,
-    body: 25,
-    foot: 20,
-}
-
-const ATTACK = ['head', 'body', 'foot'];
 
 const player1 = new Player({
     player: 1,
     name: 'Scorpion',
     hp: 100,
     img: 'http://reactmarathon-api.herokuapp.com/assets/scorpion.gif',
+    rootSelector: 'arenas',
 });
 const player2 = new Player({
     player: 2,
     name: 'SubZero',
     hp: 100,
     img: 'http://reactmarathon-api.herokuapp.com/assets/subzero.gif',
+    rootSelector: 'arenas',
 });
 
 
 class Game {
-
-
-    createPlayer = ({player, hp, name, img}) => {
-        const $player = createElement('div', `player${player}`);
-
-        const $progressbar = createElement('div', 'progressbar');
-        const $life = createElement('div', 'life');
-        $life.style.width = `${hp}%`;
-        const $name = createElement('div', 'name');
-        $name.innerText = name;
-        $progressbar.appendChild($life);
-        $progressbar.appendChild($name);
-
-        const $character = createElement('div', 'character');
-        const $img = createElement('img');
-        $img.src = img;
-        $character.appendChild($img);
-
-        $player.appendChild($progressbar);
-        $player.appendChild($character);
-
-
-        return $player;
-    }
-
-
     getChecked = () => {
         let at;
         let def;
@@ -159,8 +129,8 @@ class Game {
             e.preventDefault();
             g.action();
         });
-        $arenas.appendChild(this.createPlayer(player1));
-        $arenas.appendChild(this.createPlayer(player2));
+        player1.createPlayer();
+        player2.createPlayer();
     }
 
 
