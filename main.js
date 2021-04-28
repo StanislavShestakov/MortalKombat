@@ -10,7 +10,7 @@ const q = new Promise(function (resolve, reject){
         status: 200,
         msg: 'Success'
     };
-    resolve(data);
+    reject('Our error');
 });
 
 console.log(q);
