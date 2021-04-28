@@ -31,7 +31,7 @@ class Game {
         let at;
         let def;
         for (let item of $formFight) {
-            if (item.checked && item.name === 'hit') {
+            if (item.checked && item.name  === 'hit') {
                 at = item.value;
             }
             if (item.checked && item.name === 'defence') {
