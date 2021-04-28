@@ -11,7 +11,7 @@ console.log(1);
 
 const q = new Promise((resolve => {
     console.log(2)
-    resolve();
+    setTimeout(() =>resolve(),2000) ;
 }));
 
 console.log(3);
@@ -25,5 +25,5 @@ console.log(5);
 // 2
 // 3
 // 5
-// 4
 // 0
+// 5 after 2000ms
