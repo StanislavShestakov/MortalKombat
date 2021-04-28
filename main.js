@@ -5,26 +5,25 @@
 // game.start();
 
 
-const q = new Promise(function (resolve, reject){
-    const data ={
-        status: 200,
-        msg: 'Success'
-    };
-    reject('Our error');
-});
+setTimeout(() => console.log(0));
 
-console.log(q);
+console.log(1);
 
-q.then(function (data){
-    console.log(data);
-    const clientData = {
-        ...data,
-        name: 'Zar',
-    }
-    return clientData;
-}).then(function (clientData){
-    console.log(clientData);
+const q = new Promise((resolve => {
+    console.log(2)
+    resolve();
+}));
 
-}).catch(function (err){
-    console.log(err);
-});
+console.log(3);
+
+q.then(()=>console.log(4));
+
+console.log(5);
+
+// output
+// 1
+// 2
+// 3
+// 5
+// 4
+// 0
