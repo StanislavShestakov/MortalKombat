@@ -25,4 +25,6 @@ q.then(function (data){
 }).then(function (clientData){
     console.log(clientData);
 
+}).catch(function (err){
+    console.log(err);
 });
