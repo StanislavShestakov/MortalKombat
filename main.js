@@ -15,4 +15,13 @@ q.then(response => {
     return response.json();
 }).then(data => players = data);
 
-console.log(players);
+async  function getPlayers(){
+    console.log('start');
+    const q = new Promise(resolve => setTimeout(()=> resolve(),5000));
+    console.log('wait');
+    await q;
+    console.log('finish')
+    return 1;
+}
+
+getPlayers().then(res => console.log(res));
