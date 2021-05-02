@@ -4,26 +4,15 @@
 //
 // game.start();
 
+let players = [];
 
-setTimeout(() => console.log(0));
+const q = fetch('https://reactmarathon-api.herokuapp.com/api/mk/players');
 
-console.log(1);
+console.log(q);
 
-const q = new Promise((resolve => {
-    console.log(2)
-    setTimeout(() =>resolve(),2000) ;
-}));
+q.then(response => {
+    console.log(response);
+    return response.json();
+}).then(data => players = data);
 
-console.log(3);
-
-q.then(()=>console.log(4));
-
-console.log(5);
-
-// output
-// 1
-// 2
-// 3
-// 5
-// 0
-// 5 after 2000ms
+console.log(players);
