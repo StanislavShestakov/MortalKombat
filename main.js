@@ -1,14 +1,6 @@
-// import Game from './game.js';
-//
-// const game = new Game();
-//
-// game.start();
+import Game from './game.js';
 
-async  function getPlayers(){
-    const q = await fetch('https://reactmarathon-api.herokuapp.com/api/mk/players');
-    const body = await  q.json();
-    console.log(body);
-    return body;
-}
+const game = new Game();
 
-getPlayers();
+game.start();
+
