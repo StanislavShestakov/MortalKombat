@@ -10,6 +10,7 @@ const $fightButton = document.querySelector('.buttonWrap .button');
 const $formFight = document.querySelector('.control');
 
 
+
 const player1 = new Player({
     player: 1,
     name: 'Scorpion',
