@@ -76,7 +76,8 @@ class Game {
         $restartButton.innerText = "Restart";
         $restart.appendChild($restartButton);
         $restart.addEventListener('click', function () {
-            window.location.reload()
+            //window.location.reload();
+            window.location.pathname = 'main.js/index.html';
         })
         return $restart;
     }
@@ -116,7 +117,15 @@ class Game {
     }
     start = async () => {
         const players = await  this.getPlayers();
-        const p1 = players[getRandom(players.length)-1];
+        let p1 = players[getRandom(players.length)-1];
+        const plr1 = localStorage.getItem('player1');
+        const pId = JSON.parse(plr1)['id'];
+        for( let i = 0; i < players.length; i++){
+            if(players[i].id === pId){
+              p1 = players[i];
+              break;
+            }
+        }
         const p2 = players[getRandom(players.length)-1];
         console.log(p1,p2);
         player1 = new Player({
