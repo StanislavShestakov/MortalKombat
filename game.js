@@ -10,28 +10,20 @@ const $fightButton = document.querySelector('.buttonWrap .button');
 const $formFight = document.querySelector('.control');
 
 
-const player1 = new Player({
-    player: 1,
-    name: 'Scorpion',
-    hp: 100,
-    img: 'http://reactmarathon-api.herokuapp.com/assets/scorpion.gif',
-    rootSelector: 'arenas',
-});
-const player2 = new Player({
-    player: 2,
-    name: 'SubZero',
-    hp: 100,
-    img: 'http://reactmarathon-api.herokuapp.com/assets/subzero.gif',
-    rootSelector: 'arenas',
-});
-
+let player1;
+let player2;
 
 class Game {
+    getPlayers = async () =>{
+        const body = fetch('https://reactmarathon-api.herokuapp.com/api/mk/players').then(res => res.json());
+        return body;
+    }
+
     getChecked = () => {
         let at;
         let def;
         for (let item of $formFight) {
-            if (item.checked && item.name === 'hit') {
+            if (item.checked && item.name  === 'hit') {
                 at = item.value;
             }
             if (item.checked && item.name === 'defence') {
@@ -84,7 +76,8 @@ class Game {
         $restartButton.innerText = "Restart";
         $restart.appendChild($restartButton);
         $restart.addEventListener('click', function () {
-            window.location.reload()
+            //window.location.reload();
+            window.location.pathname = 'main.js/index.html';
         })
         return $restart;
     }
@@ -122,15 +115,38 @@ class Game {
 
         this.isWin();
     }
-    start = () => {
+    start = async () => {
+        const players = await  this.getPlayers();
+        let p1 = players[getRandom(players.length)-1];
+        const plr1 = localStorage.getItem('player1');
+        const pId = JSON.parse(plr1)['id'];
+        for( let i = 0; i < players.length; i++){
+            if(players[i].id === pId){
+              p1 = players[i];
+              break;
+            }
+        }
+        const p2 = players[getRandom(players.length)-1];
+        console.log(p1,p2);
+        player1 = new Player({
+           ...p1,
+           player: 1,
+           rootSelector: 'arenas',
+        });
+        player2 = new Player({
+           ...p2,
+           player: 2,
+           rootSelector: 'arenas',
+        });
+        player1.createPlayer();
+        player2.createPlayer();
         const g = this;
         generateLogs('start', player1, player2);
         $formFight.addEventListener('submit', function (e) {
             e.preventDefault();
             g.action();
         });
-        player1.createPlayer();
-        player2.createPlayer();
+
     }
 
 
