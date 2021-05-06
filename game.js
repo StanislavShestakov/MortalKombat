@@ -1,7 +1,7 @@
-import { getRandom,createElement } from "./utils";
-import {LOGS,ATTACK,HIT} from "./constants";
+import { getRandom,createElement } from "./utils/index.js";
+import {LOGS,ATTACK,HIT} from "./constants/index.js";
 
-import Player from "./Player";
+import Player from "./Player/index.js";
 import generateLogs from "./generate_logs.js";
 import setDamage from "./set_damage.js";
 
@@ -145,6 +145,7 @@ class Game {
         $formFight.addEventListener('submit', function (e) {
             e.preventDefault();
             g.action();
+
         });
 
     }
