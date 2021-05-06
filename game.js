@@ -77,7 +77,7 @@ class Game {
         $restart.appendChild($restartButton);
         $restart.addEventListener('click', function () {
             //window.location.reload();
-            window.location.pathname = 'main.js/index.html';
+            window.location.pathname = 'index.html';
         })
         return $restart;
     }
