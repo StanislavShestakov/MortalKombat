@@ -1,5 +1,5 @@
-import {LOGS} from "./constants";
-import { getTime,getRandom} from "./utils";
+import {LOGS} from "./constants/index.js";
+import { getTime,getRandom} from "./utils/index.js";
 
 const $chat = document.querySelector('.chat');
 
